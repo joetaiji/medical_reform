@@ -1,0 +1,235 @@
+@import "mixin";
+
+/* =======================================================================================
+공통
+======================================================================================= */
+$contents : $url + "/contents";
+
+.dash { border:1px dashed var(--gray-20); margin: 2rem 0;}
+.info-box hr{ border:1px dashed #b5d2f1; }
+
+
+/* =======================================================================================
+01.의료개혁 
+======================================================================================= */
+.s01-01{
+    &-img2 { position: relative; border: 0;
+        &::after { content: ''; display: block; width: 25.4rem; height: 26.8rem; background: url(#{$contents}/01_01_img2.png) 0 0 / contain no-repeat; @include pos(rt, 6%, -2rem);}
+    }
+}
+.s01-02{
+    &-diagram { background: var(--gray-5); border-radius: var(--radius-medium); padding: 1.6rem; width: 100%;margin-bottom: 0.8rem; font-size: var(--font-size-small); @include flex(.4rem, center, center, inline); 
+        span {display: inline-block; text-align: center; background: var(--gray-0); border-radius: 3rem; border:1px solid var(--gray-20); padding: 0.8rem 1.2rem;}
+        i.primary { color:var(--primary-50);}
+        span.primary { color:var(--primary-50); border: 1px solid var(--primary-50); background: var(--primary-5);}
+    }
+}
+.s01-05{
+    &-accordion {         
+        .aco-cont .box { background: var(--gray-0); padding: 3rem;}
+        .box-title { display: block; margin-bottom: 1.2rem; @include flex(0.8rem, center);
+            &::before { display: block; font-family: var(--icon); font-weight: normal; font-size: 2.4rem; }
+        }
+        .before { position: relative;
+            &::before { content: "\f00a"; font-size: 2.8rem; font-family: var(--icon); color: var(--gray-40); @include pos(lt, 100%, 50%); transform:translateX(0.6rem);}
+            .box-title {
+                &::before { content: "\eca1"; color:var(--point-50); } 
+            }
+        }
+        .after { border: 1px solid var(--primary-50); 
+            .box-title { color: var(--primary-60);
+                &::before { content: "\eb80"; color: var(--primary-50); }
+            }
+        }
+    }
+}
+
+
+/* =======================================================================================
+02.의료개혁특위
+======================================================================================= */
+
+
+/* =======================================================================================
+03.자료실 04.Q&A
+======================================================================================= */
+
+.sns-link-wrap{ @include flex(.4rem, center);
+    [class*='sns-'] { @include circle(3.8rem); border: 1px solid var(--gray-20); transition: 0.25s;
+        i { @include flex(null, center, center); width: 100%; height: 100%; mask: 50% 50%/cover no-repeat; }
+        &:hover { background-color: var(--gray-10); }
+    }
+    .sns { 
+        &-gov i { background:url('../img/board/sns_ico_gov.svg') 50% 50%/cover no-repeat;} 
+        &-youtube i { mask-image:url('../img/board/sns_ico_youtube.svg'); background-color:var(--youtube);} 
+        &-blog i { mask-image:url('../img/board/sns_ico_blog.svg'); background-color:var(--blog);} 
+        &-twitter i { mask-image:url('../img/board/sns_ico_twitter.svg'); background-color:var(--twitter);} 
+        &-facebook i { mask-image:url('../img/board/sns_ico_facebook.svg'); background-color:var(--facebook);} 
+        &-instagram i { mask-image:url('../img/board/sns_ico_instagram.svg'); background-color:var(--instagram);} 
+    }
+}
+
+/* =======================================================================================
+05.사이트맵 및 통합검색
+======================================================================================= */
+//통합검색
+.total-search-top-box { margin-bottom: 6.4rem; position: relative;
+    .sch-form-wrap { @include flex(2rem, null, center, column);position: relative;z-index: 1; padding: 5.6rem 0;}
+    &::after { content: ''; display: block; @include pos(lt, 50%, 0); width: 100vw; height: 100%; background: var(--secondary-5); z-index: 0;}
+    .sch-input { position: relative;
+        .form-control { width: 100%; height: 8rem; border-radius: 1.2rem; font-size: 2.5rem; font-weight: bold; padding: 0 7.2rem 0 2.4rem; }
+        .ico-sch { @include pos(rt, 1rem, 50%); 
+            &::after { width: 4rem; height: 4rem; }
+        }
+    }
+    .sch-etc {
+        .ico-sch1::before { width: 2.4rem; height: 2.4rem;}
+        .sch-detail { width: 100%; @include inactive(.3s); 
+            .row-line { border:0;
+                > li { border: 0; padding: 0;}
+            }
+            .label { width: 12%; min-width: 10rem;}
+            .btns {margin: 0; justify-content: space-between;}
+            .btn.sm { height: 4.8rem;
+                &.active { background: var(--primary-50); border-color:var(--primary-50); color: var(--gray-0);
+                    &:hover { background: var(--primary-60);}
+                }
+            }		
+		}
+		.search-btn.md { min-width: 14rem;}
+        .btn-close { @include pos(lt, 50%, 100%); background: var(--secondary-5); padding: .8rem 3rem 1.2rem; border-radius: 0 0 1rem 1rem; border: 0; height: auto;
+           &::after { rotate:180deg; width: 2rem; height: 2rem;}  
+        }
+        &.active {
+            .ico-sch1 { @include inactive(.3s); position: absolute;}
+            .sch-detail { @include active;  }
+        }
+    }
+}
+.total-search-cont {     
+    .tabs {
+        .tab {width: 100%;
+            >li { flex:1 1 0; min-width:0;
+                ~ li {margin-left: -1px;}
+                &.active {
+                    .btn-tab { background: var(--primary-70); border-color:var(--primary-70); color: var(--gray-0); }
+                }                
+            }
+            .btn-tab { height:5.8rem; border: 1px solid var(--primary-10);}
+        }
+    }
+    .tab-conts-wrap { 
+        .tab-conts { display: none; flex-direction: column;
+            &.active { display: flex;}
+            .btn-more { margin-top: 2rem;}
+        }        
+    }
+}
+.search-list-top { @include flex($jc:space-between); margin-bottom: 1.6rem;
+    .sch-info { font-size: 2.1rem; font-weight: 700;
+        .keyword { color: var(--primary-60);}
+    }
+    .sch-sort { @include flex(1.6rem, center);
+        .sort-select { border: 0;}
+        .li2 { @include flex(1rem, center);}
+        .w-sort-btn { @include flex(1rem, center);
+            .active { text-decoration:underline;}
+        }
+        
+    }
+}
+.total-search-list { border-top: 2px solid var(--gray-80); 
+    &.no-list {
+        .li { padding: 7.2rem 0;}
+        .tit { font-size: 1.9rem; font-weight: 700; text-align: center;}
+        .list-dot { margin:0 auto; }
+    }
+    .li { @include flex(2rem, $fd:column); border-bottom: 1px solid var(--gray-30); padding: 2.8rem 0;}
+    .info-body {
+        a { display: block;
+            &:hover { text-decoration: underline;} 
+        }
+        .tit { font-size: 1.9rem; font-weight: 700; @include flex(null, center);
+            &:has(.sns-link-wrap) { gap: 2rem;}
+            ~ .txt { margin-top: 2.4rem;}
+        }
+        .keyword {	background: var(--primary-5); color: var(--primary-60); font-weight: bold; padding: 0 .3rem;}
+    }
+    .info-btm { @include flex(null, flex-end, space-between);
+        .i-cate { @include flex(); border-bottom: 1px solid var(--gray-90);
+            .span { 
+                ~ .span { 
+                    &::before {content: '\ea6e'; font-family: var(--icon); padding: 0 .3rem;}
+                }                
+            }
+        }
+        .btn-area { @include flex(2rem);
+            .btn-txt {height: 3.2rem;}
+        }
+
+    }
+}
+
+//사이트맵
+.sitemap_area { @include grid(2rem, repeat(3, 1fr));    
+    >li { 
+        >a { height: 6.6rem; border-radius: 0.4rem; @include flex(null, center, center); border: 2px solid var(--primary-60); color: var(--primary-60); font-size: 2.1rem; font-weight: bold;}
+        .submenu { 
+            > ul {
+                > li {
+                    > a { display: block; padding: 1.6rem 3rem; border-bottom: 1px solid var(--gray-30); font-weight: bold; font-size: 1.9rem; position: relative;
+                        &:has(+div)::before { content: ""; display: inline-flex; width: 2rem; height: 2rem; background: url(../img/layout/head_gnb_ico_arr.svg) no-repeat center / contain; @include pos(rt, 2rem, 50%); display: none;}
+                    }
+                    > div:has(.lnb-detail) { border-bottom: 1px solid var(--gray-30); background: var(--gray-5); padding: 2rem 3rem;}
+                }
+            }  
+            .lnb-detail {
+                > li {
+                    > a { display: block; padding-left: 2rem; position: relative;
+                        &::before { content: ''; display: block; width: 0.4rem; height: 0.4rem; border-radius: 50%; background: var(--gray-40); @include pos(lt, 0, 1rem);}
+                    }
+                }
+            }          
+        }
+    }
+}
+.banner-list { border-top: 1px dashed var(--gray-30);
+    li { @include flex(2.4rem, center); padding:2rem 0; border-bottom: 1px dashed var(--gray-30);        
+        img { width: 22.4rem; height: 7rem; border: 1px solid var(--gray-30); border-radius: 0.8rem;object-fit:cover; }
+        .btn { margin-left: auto;}
+    }
+}
+
+
+
+/* =======================================================================================
+반응형
+======================================================================================= */
+
+@include media($pad) {	        
+    .s01-01{
+        &-img2 { padding-top: 30rem;
+            &::after { right:50%; transform: translateX(50%);}    
+        }
+    }
+    .s01-05{
+        &-accordion {           
+            .before::before { left:50%; top: 100%; translate: 0; transform: translateX(-50%) rotate(90deg);}
+        }
+    }
+    //08.이용안내
+    .banner-list {
+        li {flex-direction: column;
+            strong { text-align: center; }
+            .btn { margin-left: inherit;}
+        }
+    }
+    .sitemap_area { grid-template-columns: 1fr;}
+    .cont-qna-box .btn-all {right: 2rem;top: 2rem;}
+    .cont-qna-box.accordion details .aco-cont {padding-left: 1rem;padding-right: 1rem;}
+    .search-list-top { flex-direction: column; gap:1rem;}
+    .total-search-list {
+        .info-btm { flex-direction: column; gap: 1rem;}
+    }
+}
+

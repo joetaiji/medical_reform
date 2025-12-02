@@ -1,0 +1,150 @@
+@import "../scss/mixin";
+
+
+/* =======================================================================================
+메인공통
+======================================================================================= */
+$main : $url + "/main";
+
+.main-sect { position: relative; margin-top: 7.2rem;
+	h2 { font-size: 4rem; color: var(--gray-90); margin-bottom: 2.4rem;}	
+	.shortcut { @include flex(.4rem, center);
+		&::after { width: 2rem; height: 2rem;}
+	}
+}
+
+/* =======================================================================================
+메인 비주얼 배너 & 팝업존
+======================================================================================= */
+.main-vban-wrap {width: 100%; max-width:inherit; height: 64rem; background:url(#{$main}/main_visual1.jpg) 50% 50%/cover no-repeat; padding: 33rem 0 7rem; position: relative;
+	&::before { content: ''; width: 100%; height: 100%; background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.5) 100%); position: absolute;left: 0;top: 0;  transition: .8s; backdrop-filter:blur(1.5rem);}
+	.inner { @include flex(1rem, $ai:flex-start, $fd:column); position: relative; z-index: 1; }
+	.visual-txt {@include flex(1.8rem, $fd:column); 
+		p { @include inactive; }	
+		p:first-child {transform: translateY(3rem); transition: var(--trs-base) .4s;}
+		p:last-child {transform: translateY(6rem); transition: var(--trs-base) .6s;}
+		&.active { 
+			p {@include active; }
+			p:first-child,
+			p:last-child {transform: translateY(0);}
+		}
+	}
+	.sch-input { position: relative; border: 3px solid #cee6ff; border-radius: var(--radius-large); color: var(--gray-0); width: 64rem; @include inactive(); transition: .6s ease 1s;  transform: translateY(3rem); backdrop-filter: blur(1rem); 
+		input { width: 100%; height: 100%; background: rgba(0,0,0,0.2); color: var(--gray-0); border: 0; padding: 0 6rem 0 1.6rem; font-size: var(--font-size-large);
+			&::placeholder { color: var(--gray-0);}
+		}
+		.ic-sch { @include pos(rt, 0.8rem, 50%); color:inherit; font-size: 3.2rem;}
+		&.active { @include active(); transform: translateY(0); height:6.4rem;}	
+	}
+	&.active {
+		&::before { backdrop-filter:blur(0);}
+	}
+	
+}
+
+/* =======================================================================================
+의료개혁
+======================================================================================= */
+
+.major-hcr { 
+	.item-list { gap: 1.6rem; }	
+	.item1 { border-radius: var(--radius-xxlarge); padding: 4.4rem 44rem 4.4rem 4.4rem; position: relative;  
+        &::after { content: ''; display: block; width: 21.5rem; height: 20.7rem; background: url(#{$main}/hcr_img1.png) 0 0 / contain no-repeat; position: absolute; right: 4.4rem; top: 4.4rem; }
+		.title { font-size: 2.4rem; width: 100%; display: block; margin-bottom: 2rem;}
+		.btn-group { width: 100%; @include flex(1rem); margin-top: 2rem;
+			.btn { flex: 1;}
+		}
+    }
+	a.item{ transition: var(--trs-base);
+		&:hover { background: var(--gray-10);}
+	}
+	/* 
+	.item { border-radius: var(--radius-xxlarge); padding: 3.6rem; @include flex(2rem, $fd:column); position: relative; 
+		&::before { position: absolute;}
+		.title { font-size: 2.4rem; width: 100%;}
+	}
+	.item2 { position: relative; width: 66rem;
+        &::before { content: ''; display: block; width: 19.8rem; height: 22.3rem; background: url(#{$main}/hcr_img2.png) 0 0 / contain no-repeat; right:10%; bottom: 0;}
+    }
+	.item3 { position: relative;
+		&::before { content: ''; display: block; width: 6rem; height: 6.2rem;  background: url(#{$main}/hcr_img3.png) 0 0 / contain no-repeat; right: 4rem; bottom: 4rem;}
+	}
+	.item4 { position: relative;
+		&::before { content: ''; display: block; width: 6rem; height: 6.2rem;  background: url(#{$main}/hcr_img4.png) 0 0 / contain no-repeat; right: 4rem; bottom: 4rem;}
+	} */
+	
+}
+
+
+/* =======================================================================================
+카드뉴스
+======================================================================================= */
+.card-news {	
+	.inner { position: relative;}
+	.item-list { @include flex(2.4rem);}	
+	.item { flex: 1; @include flex(1rem, $fd:column); position: relative;		
+		.thumb {width: 100%; height: 21.6rem; background: rgba(0,0,0,0); overflow:hidden; border-radius: var(--radius-xlarge); margin-bottom: 0.4rem; transition: var(--trs-base);
+			img {width: 100%; height: 100%; object-fit: cover; transition: var(--trs-base); }
+		}
+		span {color:var(--gray-70);}		
+		.title { font-size: 2.1rem; display: block; min-height:6.3rem; @include ellipsis-multi(2); word-break: break-all;
+			&::after {margin-left: 0.4rem;}
+		}
+		.desc { color: var(--gray-70)}
+		.shortcut { margin-top: 1.4rem;}
+		&:hover {
+			.thumb { background: rgba(0,0,0,1); }
+			img { opacity: 0.8; transform: scale(1.1); }
+		}
+	}
+	.more { @include pos(rt, 0, 3.5rem); transition: var(--trs-base); border-radius: var(--radius-small); padding:.2rem .4rem;
+		&:hover { background: var(--secondary-5);}
+	}
+	
+}
+
+
+/* =======================================================================================
+반응형
+======================================================================================= */
+/* @include media($web) {	
+	.major-hcr {
+		.item1,
+		.item2 {width:auto;}
+		.item2 { padding-right: 22rem;
+			&::before { right:2%; }
+		}		
+		.item2, .item3, .item4 { padding-bottom: 10rem;}
+	}	
+} */
+@include media($web) {	
+	.major-hcr {
+		.item .desc br{ display: none;}	
+	}
+}
+@include media($pad) {	
+	.main-sect { margin-top: 4rem;}
+	.main-vban-wrap {height: 48rem; padding: 20rem 0 4rem;
+		.inner { position: absolute; left: 1.6rem; bottom: 4rem; }
+		.visual-txt { width: 60%;}
+		.sch-input { width: 100%;}
+	}	
+	.major-hcr {	
+		.item1 {padding-right: 30rem;}		
+		/* .item1 { padding: 3rem 2rem;}
+		.item2 { padding-left: 2rem;}
+		.item3, .item4 { padding-left:2rem; padding-right: 2rem;} */
+	}
+}
+@include media($mobile) {	
+	.main-vban-wrap {height: 46rem; }
+	.major-hcr .item1 {padding: 2rem;}
+	.major-hcr .item1::after { position: relative; right:auto; top: auto; margin: 3rem auto 0;}
+	.card-news {		
+		.item-list { flex-direction: column; }
+		.item { width: 100%;
+			.title { min-height: auto;}
+		}
+	}	
+	
+}
